@@ -15,4 +15,8 @@ Este arquivo contem projeto que execulta as seguinte funções em Python
 Arquivo Send_Teams.py
 - Arquivo main ou seja o principal, atravez dele se faz conexoes com os demais arquivos, apos concluir o processo o mesmo enviar as informações no Teams
 - Arquivo Import_arquivos, como o nome ja diz, ele que chama os arquivos de importacao para iniciar o login e download dos arquivos .csv
-- 
+
+
+***
+Obs: O site do SAPWeb so ira funcionar na rede em que foi programado
+***
