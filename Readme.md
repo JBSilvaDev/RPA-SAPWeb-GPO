@@ -8,15 +8,20 @@ Este arquivo contem projeto que execulta as seguinte funções em Python
 	- Dados faturamento mes <br>
 	- Dados de estoque <br>
 	- Dados de produção <br>
-- Os dados sao armazenados e enviados via WhatsApp <br>
+- Os dados sao armazenados e enviados via Microsoft Teams e WhatsApp Web <br>
 
 
-# Orientação de uso
-Arquivo Send_Teams.py
-- Arquivo main ou seja o principal, atravez dele se faz conexoes com os demais arquivos, apos concluir o processo o mesmo enviar as informações no Teams
-- Arquivo Import_arquivos, como o nome ja diz, ele que chama os arquivos de importacao para iniciar o login e download dos arquivos .csv
+# Observações
+- O projeto foi criado para uso exclusivo em rede corporativa algumas funções podem nao funcionar fora desta rede
+- Caba adaptação do programador que deseja seguir o modelo para executar outras atividades
+
+### Mensagem em WhatsApp
+- Enviada a 1 unida pessoa via link direto (uri)
+![](./img/whatsapp.png)
+### Mensagem Microssoft Teams
+- Enviada em um grupo de pessoas atravez da api webhook
+![](./img/teams.png)
 
 
-***
-Obs: O site do SAPWeb so ira funcionar na rede em que foi programado
-***
+***Dados privados ocultos***
+

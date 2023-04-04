@@ -1,0 +1,13 @@
+Estoques WM com texto breve de material
+
+"Nº depósito			004"
+
+
+"		Material		Cen.	Dep.	T	Lote	Estoque disponível	Texto breve material	Tp.	PosDepósit	UMB	Data EM	ÚltModif por	Últ.modif."
+
+"		0021046734		2100	AQ04	Q	S1112585	            2,000	MSP-1ET	CES	CA120101	TON	28.07.2021	FLORINEB	05.12.2022"
+"		0021046734		2100	AQ04	Q	S1112585	            2,000	MSP-1ET	CES	CA120101	TON	28.07.2021	FLORINEB	05.12.2022"
+"		0021039346		2100	AV01		S1130476	            2,000	MSP-1EP	CES	CB2203	TON	15.02.2023	FLORINEB	05.12.2022"
+"		0021039346		2100	AV01		S1130476	            2,000	MSP-1EP	CES	SINISTRO	TON	15.02.2023	ANTONIOB	10.02.2022"
+
+"	*							       18.130,000				TON"
