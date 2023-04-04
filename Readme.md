@@ -17,10 +17,10 @@ Este arquivo contem projeto que execulta as seguinte funções em Python
 
 ### Mensagem em WhatsApp
 - Enviada a 1 unida pessoa via link direto (uri)
-![](./img/whatsapp.png)
+	- ![](./img/whatsapp.png)
 ### Mensagem Microssoft Teams
 - Enviada em um grupo de pessoas atravez da api webhook
-![](./img/teams.png)
+	- ![](./img/teams.PNG)
 
 
 ***Dados privados ocultos***
