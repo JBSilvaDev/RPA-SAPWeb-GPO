@@ -13,15 +13,14 @@ from controller.user_key.key_controller import ControllerLogin
 from datetime import datetime
 
 
-  # # Remove CSVs antigos
+# # Remove CSVs antigos
 try:
-  path = Path('./').absolute()
-  pasta = os.listdir(f'{path}\Arquivos')
-  for i in pasta:
-      os.unlink(f'{path}\Arquivos\{i}')
+    path = Path("./").absolute()
+    pasta = os.listdir(f"{path}\Arquivos")
+    for i in pasta:
+        os.unlink(f"{path}\Arquivos\{i}")
 except:
-  pass
-
+    pass
 
 
 # Baixando dados
@@ -49,7 +48,4 @@ zap.send_messeger()
 data = f'{datetime.today().date().strftime("%d-%m-%Y")}'
 hora = f'{datetime.today().time().strftime("%H:%M")}'
 firebase = ControllerLogin()
-firebase.last_run({data:hora})
-
-
-
+firebase.last_run({data: hora})
