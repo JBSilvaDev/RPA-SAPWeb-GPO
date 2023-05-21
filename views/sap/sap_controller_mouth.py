@@ -25,13 +25,17 @@ class SapMonth(SapController):
         pass
 
     def sap_start(self):
+      try:
         self.surf_page()
         self.sap_menu_ambiente()
         self.sap_page_action()
         self.wait_load_data()
         self.sap_download_csv()
+      except:
+        pass
 
     def surf_page(self):
+        self.log('Voltando a SQ01 para faturado mês')
         iD_transactions = self.sap_model.transacoes
         self.wait_elements('//*[@id="ToolbarOkCode"]').send_keys(
             iD_transactions[self.index_transaction]
@@ -43,6 +47,7 @@ class SapMonth(SapController):
         self.wait_elements('//*[@id="M0:46:::2:21"]').send_keys(self.key.F8)
 
     def sap_page_action(self):
+        self.log("Acessando dados faturamento")
         if self.hoje == 1:
             self.hoje = int(calendar.monthrange(self.ano, self.mes - 1)[1])
             self.mes = self.mes - 1
@@ -67,6 +72,7 @@ class SapMonth(SapController):
         self.wait_elements('//*[@id="M0:37::btn[8]"]').click()
 
     def sap_download_csv(self):
+        self.log("Inciando download faturado mês")
         self.wait_elements('//*[@id="cua2sapmenu_btn"]').click()
         self.wait_elements(
             "/html/body/table/tbody/tr/td/div/div/div[1]/div[2]/span[1]/div/div[2]/table/tbody/tr[1]/td[3]"
@@ -84,4 +90,5 @@ class SapMonth(SapController):
         time.sleep(5)
         self.wait_elements('//*[@id="M1:46:::1:12"]').send_keys(r"BDFaturamentoMes.CSV")
         self.wait_elements('//*[@id="M1:37::btn[11]"]').click()
+        self.log("Finalizando download faturado mês")
         time.sleep(10)

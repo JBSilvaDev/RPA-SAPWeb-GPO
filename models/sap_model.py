@@ -6,7 +6,7 @@ controller.find_user_sap()
 
 class SapModel:
     def __init__(self):
-        self.home_login = "https://sap.com/link_interno"
+        self.home_login = "https://sap.com/seusapaqui"
         self.usuario = controller.username
         self.senha = controller.password
         self.transacoes = ["/nSQ01", "/nMB51", "/nLX02"]

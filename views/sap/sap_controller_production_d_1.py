@@ -31,6 +31,7 @@ class SapProduction(SapController):
         self.sap_download_csv()
 
     def surf_page(self):
+        self.log('Acessando MB51 para dados produção D-1')
         iD_transactions = self.sap_model.transacoes
         self.wait_elements('//*[@id="ToolbarOkCode"]').send_keys(
             iD_transactions[self.index_transaction]
@@ -42,6 +43,7 @@ class SapProduction(SapController):
         pass
 
     def sap_page_action(self):
+        self.log('Acessando dados de produção')
         if self.hoje == 1:
             self.hoje = int(calendar.monthrange(self.ano, self.mes - 1)[1])
             self.mes = self.mes - 1
@@ -60,6 +62,7 @@ class SapProduction(SapController):
         self.wait_elements('//*[@id="M0:37::btn[8]"]').click()
 
     def sap_download_csv(self):
+        self.log("Inciando download produção d-1")
         self.wait_elements('//*[@id="cua2sapmenu_btn"]').send_keys(self.key.F9)
         time.sleep(5)
         self.wait_elements('//*[@id="M1:46:2:1::1:0-txt"]').click()
@@ -67,4 +70,5 @@ class SapProduction(SapController):
         time.sleep(5)
         self.wait_elements('//*[@id="M1:46:::1:12"]').send_keys(r"BDProducaoD-1.CSV")
         self.wait_elements('//*[@id="M1:37::btn[11]"]').click()
+        self.log("Finalizando download produção d-1")
         time.sleep(10)

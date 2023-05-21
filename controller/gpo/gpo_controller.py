@@ -10,10 +10,12 @@ class GpoController(Controller):
         self.open_browser()
 
     def open_browser(self):
+        self.log('Acessando GPO')
         self.inBrowser.get(self.gpo_model.links["home_login"])
         self.logon_gpo()
 
     def logon_gpo(self):
+        self.log('Efetuando login em GPO')
         time.sleep(5)
         try:
             from selenium.webdriver.common.alert import Alert

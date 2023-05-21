@@ -1,11 +1,34 @@
 import pandas as pd
 from pathlib import Path
+import colorama
+from colorama import Fore
+from colorama import Style
+
+
+
+
+# E:\Development\WorkStation
+# C:\Users\julianobs\Desktop
 
 
 class DbFilter:
     def __init__(self):
-        self.path = Path("./").resolve().parents[0]
+        colorama.init()
+        self.path = r"C:\Users\julianobs\Desktop"
+        # Path('./').resolve().parents[0]
 
+    def data_processing(self):
+        self.log('Processando dados estoque fábrica')
+        self.sap_balance()
+        self.log('Processando dados estoque porto')
+        self.gpo_balance()
+        self.log('Processando dados fatudado D-1')
+        self.sap_d_1()
+        self.log('Processando dados faturado mês')
+        self.sap_month()
+        self.log('Processando dados de produção')
+        self.sap_product()
+        
     def sap_balance(self):
         sap_stoke_balance = pd.read_csv(
             rf"{self.path}\Report-Logistc\Arquivos\BDEstoque.CSV",
@@ -125,3 +148,10 @@ class DbFilter:
 
         PROD_TOTAL = PROD_L1 + PROD_L2
         return PROD_L1, PROD_L2, PROD_TOTAL
+    
+    def log(self, msg:str):
+      # format_text  = '\033[33;40;1;4m'
+      # reset_format  = '\033[0m'
+      # print(f"{'=' * 100}\n{format_text}{msg}\n{reset_format}{'=' * 100}")
+      # print(f"{'=' * 100}\n{msg}\n{'=' * 100}")
+      print(f"{'=' * 100}\n{Fore.YELLOW}{msg}{Style.RESET_ALL}\n{'=' * 100}")

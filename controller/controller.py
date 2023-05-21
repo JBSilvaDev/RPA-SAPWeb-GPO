@@ -10,9 +10,12 @@ from datetime import date, datetime
 from selenium.webdriver.common.alert import Alert
 import os
 import time
+import colorama
+from colorama import Fore
+from colorama import Style
 
 
-path_locate = os.getcwd()
+path_locate = r"C:\local\download"
 service = Service(ChromeDriverManager().install())
 
 
@@ -48,9 +51,8 @@ inBrowser = webdriver.Chrome(
 
 
 class Controller:
-    def __init__(
-        self,
-    ):
+    def __init__(self):
+        colorama.init()
         enable_download(inBrowser)
         self.popup = Alert(inBrowser)
         self.inBrowser = inBrowser
@@ -60,18 +62,24 @@ class Controller:
         self.ano = int(date.today().strftime("%y"))
         self.mes = int(date.today().strftime("%m"))
         self.hoje = int(date.today().strftime("%d"))
+    
+    def log(self, msg:str):
+      print(f"{'=' * 100}\n{Fore.YELLOW}{msg}{Style.RESET_ALL}\n{'=' * 100}")
 
     def wait_elements(self, element: str):
+      try:
         maxLoop = 0
         listElement = self.inBrowser.find_elements(self.selectItem.XPATH, element)
         while len(listElement) < 1 and maxLoop < 600:
             time.sleep(1)
             maxLoop += 1
         time.sleep(1)
-        if len(listElement) < 1:
-            print("Tempo esgotado, elemento não encontrado")
-            return
         return self.inBrowser.find_element(self.selectItem.XPATH, element)
+      except:
+          if len(listElement) < 1:
+            self.log("Tempo esgotado, não houve resposta do servidor")
+            return
+          pass
 
     def wait_load_data(self):
         load = self.inBrowser.find_elements(
@@ -82,3 +90,9 @@ class Controller:
                 self.selectItem.XPATH, '//*[@id="M0:46:::0:0-groupheader"]'
             )
             time.sleep(3)
+    def killBrowser(self):
+        self.log('Fechando navegador')
+        try:
+            self.inBrowser.quit()
+        except:
+            self.inBrowser.close()

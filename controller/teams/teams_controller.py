@@ -3,12 +3,16 @@ import sys
 from data.controller import DbFilter
 from models.msg_model import MsgModel
 
+teams_links = {
+    "testes": "link-teams-webhook-teste",
+    "oficial": "link-teams-webhook-oficial",
+}
 df = DbFilter()
 
 
 class TeamsController:
     def __init__(self):
-        self.team = "https://link.webhook.office.com/webhookb2/chavedeacesso"
+        self.team = teams_links["oficial"]
         self.team_model = MsgModel()
         self.connect = pymsteams.connectorcard(self.team, verify=False)
         self.create_card = pymsteams.cardsection()

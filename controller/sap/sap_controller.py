@@ -15,6 +15,7 @@ class SapController(Controller):
         self.iframe_access()
 
     def logon_sap(self):
+        self.log('Fazendo login SAP')
         self.wait_elements('//*[@id="sap-user"]').send_keys(self.sap_model.usuario)
         self.wait_elements('//*[@id="sap-password"]').send_keys(self.sap_model.senha)
         self.wait_elements('//*[@id="LOGON_BUTTON"]').click()

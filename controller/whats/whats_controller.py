@@ -9,6 +9,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.alert import Alert
 import os
 import time
+import colorama
+from colorama import Fore
+from colorama import Style
 
 
 path_locate = os.getcwd()
@@ -33,7 +36,7 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--ignore-certificate-errors")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument(
-    r"user-data-dir=C:\Users\username\AppData\Local\Google\Chrome\User Data\Perfil Selenium"
+    r"user-data-dir=C:\local\armazenamento\perfil"
 )
 prefsChrome = {
     "download.default_directory": f"{path_locate}\Arquivos",
@@ -81,12 +84,27 @@ class WhatsController:
         self.link = f"{self.link}?text={msg}"
         self.open_browser()
         time.sleep(10)
-        self.wait_elements('//*[@id="action-button"]/span').click()
-        time.sleep(10)
-        self.wait_elements('//*[@id="fallback_block"]/div/div/h4[2]/a/span').click()
-        time.sleep(15)
-        self.wait_elements(
-            '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button'
-        ).click()
-        time.sleep(5)
-        self.inBrowser.quit()
+        try:
+            self.wait_elements('//*[@id="action-button"]/span').click()
+            time.sleep(10)
+            self.wait_elements('//*[@id="fallback_block"]/div/div/h4[2]/a/span').click()
+            time.sleep(20)
+            self.wait_elements(
+                '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button'
+            ).click()
+            time.sleep(5)
+        except:
+            self.killBrowser()
+        self.killBrowser()
+    def log(self, msg:str):
+          # format_text  = '\033[33;40;1;4m'
+          # reset_format  = '\033[0m'
+          # print(f"{'=' * 100}\n{format_text}{msg}\n{reset_format}{'=' * 100}")
+          # print(f"{'=' * 100}\n{msg}\n{'=' * 100}")
+          print(f"{'=' * 100}\n{Fore.YELLOW}{msg}{Style.RESET_ALL}\n{'=' * 100}")
+    def killBrowser(self):
+        self.log('Fechando navegador')
+        try:
+            self.inBrowser.quit()
+        except:
+            self.inBrowser.close()

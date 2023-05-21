@@ -4,7 +4,7 @@ import json
 
 class ControllerLogin:
     def __init__(self):
-        self.link_firebase = "https://firebase-link-db-default-rtdb.firebaseio.com/"
+        self.link_firebase = "https://projeto-firebase.firebaseio.com/"
         self.username = ""
         self.password = ""
         self.number = ""
