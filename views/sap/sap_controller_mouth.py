@@ -51,7 +51,7 @@ class SapMonth(SapController):
         if self.hoje == 1:
             self.hoje = int(calendar.monthrange(self.ano, self.mes - 1)[1])
             self.mes = self.mes - 1
-            self.end_month = int(calendar.monthrange(self.ano, self.mes - 1)[1])
+            self.end_month = int(calendar.monthrange(self.ano, self.mes)[1])
         else:
             self.hoje = self.hoje - 1
         time.sleep(10)

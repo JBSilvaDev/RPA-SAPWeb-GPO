@@ -4,7 +4,7 @@ import json
 
 class ControllerLogin:
     def __init__(self):
-        self.link_firebase = "https://projeto-firebase.firebaseio.com/"
+        self.link_firebase = "https://data-report-szn-default-rtdb.firebaseio.com/"
         self.username = ""
         self.password = ""
         self.number = ""
@@ -29,8 +29,10 @@ class ControllerLogin:
         return [self.username, self.password]
 
     def find_number_whatsApp(self):
+        # ID para msgs
         key = self._find_all("Msg")
-        self.number = key["Ricardo"]
+        # Envio de msg para
+        self.number = key["Daiane"]
         return self.number
 
     def last_run(self, map: dict):

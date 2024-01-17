@@ -1,3 +1,4 @@
+from pathlib import Path
 from controller.user_key.key_controller import ControllerLogin
 from models.msg_model import MsgModel
 import urllib.parse
@@ -6,16 +7,17 @@ from selenium.webdriver.common.by import By as selectItem
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.common.alert import Alert
 import os
 import time
-import colorama
+from controller.variaveis import *
 from colorama import Fore
 from colorama import Style
 
 
-path_locate = os.getcwd()
-service = Service(ChromeDriverManager().install())
+path_locate = Path(r'C:\Users\julianobs\Dev\Report-Logistc')
+# service = Service(ChromeDriverManager().install())
 
 
 def enable_download(driver):
@@ -26,28 +28,28 @@ def enable_download(driver):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {"behavior": "allow", "downloadPath": f"{path_locate}\Arquivos"},
+        "params": {"behavior": "allow", "downloadPath": os.path.join(path_locate,"Arquivos")},
     }
     driver.execute("send_command", params)
 
 
-chrome_options = webdriver.ChromeOptions()
+chrome_options = webdriver.EdgeOptions()
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--ignore-certificate-errors")
-chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--disable-Dev-shm-usage")
 chrome_options.add_argument(
-    r"user-data-dir=C:\local\armazenamento\perfil"
+    r"user-data-dir=C:\\Users\\julianobs\\AppData\\Local\\Microsoft\\Edge\\User Data\\JBRPA"
 )
 prefsChrome = {
-    "download.default_directory": f"{path_locate}\Arquivos",
+    "download.default_directory": os.path.join(path_locate,"Arquivos"),
     "download.prompt_for_download": False,
     "download.directory_upgrade": True,
     "safebrowsing.enabled": True,
 }
 
 chrome_options.experimental_options["prefs"] = prefsChrome
-inBrowser = webdriver.Chrome(
-    service=service,
+inBrowser = webdriver.Edge(
+    # service=service,
     options=chrome_options,
 )
 
@@ -79,7 +81,7 @@ class WhatsController:
             return
         return self.inBrowser.find_element(self.selectItem.XPATH, element)
 
-    def send_messeger(self):
+    def send_messenger(self):
         msg = urllib.parse.quote(self.msg_model.msg_final_zap)
         self.link = f"{self.link}?text={msg}"
         self.open_browser()
@@ -90,21 +92,23 @@ class WhatsController:
             self.wait_elements('//*[@id="fallback_block"]/div/div/h4[2]/a/span').click()
             time.sleep(20)
             self.wait_elements(
-                '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button'
+                '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button/span'
             ).click()
             time.sleep(5)
         except:
             self.killBrowser()
         self.killBrowser()
-    def log(self, msg:str):
-          # format_text  = '\033[33;40;1;4m'
-          # reset_format  = '\033[0m'
-          # print(f"{'=' * 100}\n{format_text}{msg}\n{reset_format}{'=' * 100}")
-          # print(f"{'=' * 100}\n{msg}\n{'=' * 100}")
-          print(f"{'=' * 100}\n{Fore.YELLOW}{msg}{Style.RESET_ALL}\n{'=' * 100}")
+
+    def log(self, msg: str):
+        print(f"{'=' * 100}\n{Fore.YELLOW}{msg}{Style.RESET_ALL}\n{'=' * 100}")
+
     def killBrowser(self):
-        self.log('Fechando navegador')
+        self.log("Fechando navegador")
         try:
-            self.inBrowser.quit()
-        except:
             self.inBrowser.close()
+            self.inBrowser.service.stop()
+        except:
+            self.inBrowser.quit()
+        finally:
+            self.log('Navegador encerrado')
+            pass

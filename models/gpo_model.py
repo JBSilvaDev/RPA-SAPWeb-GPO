@@ -8,7 +8,7 @@ class GpoModel:
     def __init__(self):
         self.links = {
             "home_login": "https://web.portocel.com.br/gpo/",
-            "relatorio": "https://web.portocel.com.br/gpo/relatorio",
+            "relatorio": "https://web.portocel.com.br/gpo/pesquisa.aspx?WCI=relPrintStimulReport&Export=StimulReport&numRelatorio=12&Criterio=",
         }
         self.usuario = controller.username
         self.senha = controller.password

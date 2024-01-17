@@ -13,6 +13,7 @@ from datetime import datetime
 import colorama
 from colorama import Fore, Style
 import sys
+from controller.variaveis import *
 
 
 colorama.init()
@@ -25,7 +26,7 @@ def log(msg: str):
 
 def main():
     # Remove CSVs antigos
-    path = Path("C:/Users/julianobs/Desktop/Report-Logistc")
+    path = Path(LOCAL_PROJETO)
     print(f"{Fore.RED} {path}{Style.RESET_ALL}")
     pasta = os.listdir(f"{path}/Arquivos")
     try:

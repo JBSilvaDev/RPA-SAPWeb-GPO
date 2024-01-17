@@ -3,9 +3,15 @@ import sys
 from data.controller import DbFilter
 from models.msg_model import MsgModel
 
+# Link para canal teste:
+# https://suzano.webhook.office.com/webhookb2/3b359661-e945-4103-8cc8-2e572244d2c9@a7109315-9727-4adf-97ad-4849bb63edcb/IncomingWebhook/b3f8aa0c8fae43d49439d97c9de265a2/84b16ee0-4575-45d0-9876-b397b0f8c957
+
+# Link canal oficial
+# https://suzano.webhook.office.com/webhookb2/ca9b57cd-1eb0-403a-ae6a-b38719e81c4b@a7109315-9727-4adf-97ad-4849bb63edcb/IncomingWebhook/24112f269e644203bd4b6e205ed45179/84b16ee0-4575-45d0-9876-b397b0f8c957
+
 teams_links = {
-    "testes": "link-teams-webhook-teste",
-    "oficial": "link-teams-webhook-oficial",
+    "testes": "https://suzano.webhook.office.com/webhookb2/3b359661-e945-4103-8cc8-2e572244d2c9@a7109315-9727-4adf-97ad-4849bb63edcb/IncomingWebhook/b3f8aa0c8fae43d49439d97c9de265a2/84b16ee0-4575-45d0-9876-b397b0f8c957",
+    "oficial": "https://suzano.webhook.office.com/webhookb2/ca9b57cd-1eb0-403a-ae6a-b38719e81c4b@a7109315-9727-4adf-97ad-4849bb63edcb/IncomingWebhook/24112f269e644203bd4b6e205ed45179/84b16ee0-4575-45d0-9876-b397b0f8c957",
 }
 df = DbFilter()
 

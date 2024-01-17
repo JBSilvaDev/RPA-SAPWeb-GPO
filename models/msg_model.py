@@ -49,8 +49,9 @@ class MsgModel:
             "Faturamento ME (D-1) ": f"{self.fat_d_1_me:,}".replace(",", "."),
             "Faturamento MI (D-1) ": f"{self.fat_d_1_mi:,}".replace(",", "."),
             "Faturamento Total (D-1) ": f"{self.fat_d_1_total:,}".replace(",", "."),
-            "Faturamento ME MTD ": f"{self.fat_mes_total:,}".replace(",", "."),
+            "Faturamento ME MTD ": f"{self.fat_mes_me:,}".replace(",", "."),
             "Faturamento MI MTD ": f"{self.fat_mes_mi:,}".replace(",", "."),
+            "Faturamento TOTAL Mês ": f"{self.fat_mes_total:,}".replace(",", "."),
         }
         self.msg_final_zap = f"""
 
@@ -64,8 +65,9 @@ Produção Total (D-1) : {self.prod_total:,}
 Faturamento ME (D-1) : {self.fat_d_1_me:,}
 Faturamento MI (D-1) : {self.fat_d_1_mi:,}
 Faturamento Total (D-1) : {self.fat_d_1_total:,}
-Faturamento ME MTD : {self.fat_mes_total:,}
+Faturamento ME MTD : {self.fat_mes_me:,}
 Faturamento MI MTD : {self.fat_mes_mi:,}
+Faturamento TOTAL Mês : {self.fat_mes_total:,}
         """.replace(
             ",", "."
         )
