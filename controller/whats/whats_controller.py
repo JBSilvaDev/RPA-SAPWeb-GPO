@@ -5,10 +5,6 @@ import urllib.parse
 from selenium import webdriver
 from selenium.webdriver.common.by import By as selectItem
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-from selenium.webdriver.common.alert import Alert
 import os
 import time
 from controller.variaveis import *

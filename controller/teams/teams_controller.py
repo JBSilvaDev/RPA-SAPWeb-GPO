@@ -1,5 +1,4 @@
 import pymsteams
-import sys
 from controller.variaveis import *
 from data.controller import DbFilter
 from models.msg_model import MsgModel
@@ -9,7 +8,7 @@ df = DbFilter()
 
 class TeamsController:
     def __init__(self):
-        self.team = TEAMS_LINKS["oficial"]
+        self.team = TEAMS_LINKS
         self.team_model = MsgModel()
         self.connect = pymsteams.connectorcard(self.team, verify=False)
         self.create_card = pymsteams.cardsection()
