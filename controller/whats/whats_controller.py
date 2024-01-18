@@ -16,8 +16,7 @@ from colorama import Fore
 from colorama import Style
 
 
-path_locate = Path(r'C:\Users\julianobs\Dev\Report-Logistc')
-# service = Service(ChromeDriverManager().install())
+path_locate = Path(LOCAL_PROJETO)
 
 
 def enable_download(driver):
@@ -28,7 +27,10 @@ def enable_download(driver):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {"behavior": "allow", "downloadPath": os.path.join(path_locate,"Arquivos")},
+        "params": {
+            "behavior": "allow",
+            "downloadPath": os.path.join(path_locate, "Arquivos"),
+        },
     }
     driver.execute("send_command", params)
 
@@ -37,11 +39,9 @@ chrome_options = webdriver.EdgeOptions()
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--ignore-certificate-errors")
 chrome_options.add_argument("--disable-Dev-shm-usage")
-chrome_options.add_argument(
-    r"user-data-dir=C:\\Users\\julianobs\\AppData\\Local\\Microsoft\\Edge\\User Data\\JBRPA"
-)
+chrome_options.add_argument(PERFIL_RPA_BROWSER)
 prefsChrome = {
-    "download.default_directory": os.path.join(path_locate,"Arquivos"),
+    "download.default_directory": os.path.join(path_locate, "Arquivos"),
     "download.prompt_for_download": False,
     "download.directory_upgrade": True,
     "safebrowsing.enabled": True,
@@ -49,7 +49,6 @@ prefsChrome = {
 
 chrome_options.experimental_options["prefs"] = prefsChrome
 inBrowser = webdriver.Edge(
-    # service=service,
     options=chrome_options,
 )
 
@@ -110,5 +109,5 @@ class WhatsController:
         except:
             self.inBrowser.quit()
         finally:
-            self.log('Navegador encerrado')
+            self.log("Navegador encerrado")
             pass

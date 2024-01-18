@@ -1,29 +1,14 @@
-from enum import verify
 from selenium import webdriver
-# from selenium.webdriver.chrome.service import Service
-# from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.common.by import By as selectItem
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
-from datetime import date, datetime
+from datetime import date
 from selenium.webdriver.common.alert import Alert
 import time
 import colorama
 from colorama import Fore
 from colorama import Style
-from pathlib import Path
-import os
-# import urllib3
-
-
-# urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-path_locate = Path(r'C:\Users\julianobs\Dev\Report-Logistc')
-# service = Service()
-# service = Service(version='117.0.5938.1100-beta')
+from controller.variaveis import *
 
 
 def enable_download(driver):
@@ -33,7 +18,7 @@ def enable_download(driver):
     )
     params = {
         "cmd": "Page.setDownloadBehavior",
-        "params": {"behavior": "allow", "downloadPath": os.path.join(path_locate,"Arquivos")},
+        "params": {"behavior": "allow", "downloadPath": LOCAL_DOWNLOAD},
     }
     driver.execute("send_command", params)
 
@@ -43,9 +28,8 @@ edge_options.add_argument("--headless")
 edge_options.add_argument("--no-sandbox")
 edge_options.add_argument("--ignore-certificate-errors")
 edge_options.add_argument("--disable-Dev-shm-usage")
-# edge_options.add_argument(r'user-data-dir=C:\Users\julianobs\AppData\Local\Google\Chrome\User Data\Perfil Selenium')
 prefs = {
-    "download.default_directory": os.path.join(path_locate,"Arquivos"),
+    "download.default_directory": LOCAL_DOWNLOAD, 
     "download.prompt_for_download": False,
     "download.directory_upgrade": True,
     "safebrowsing.enabled": True,
@@ -53,7 +37,6 @@ prefs = {
 
 edge_options.experimental_options["prefs"] = prefs
 inBrowser = webdriver.Edge(
-    # service=service,
     options=edge_options,
 )
 
@@ -73,10 +56,6 @@ class Controller:
 
     def log(self, msg: str):
         edge_options.add_argument("--headless")
-        # format_text  = '\033[33;40;1;4m'
-        # reset_format  = '\033[0m'
-        # print(f"{'=' * 100}\n{format_text}{msg}\n{reset_format}{'=' * 100}")
-        # print(f"{'=' * 100}\n{msg}\n{'=' * 100}")
         print(f"{'=' * 100}\n{Fore.YELLOW}{msg}{Style.RESET_ALL}\n{'=' * 100}")
 
     def wait_elements(self, element: str):
@@ -107,7 +86,7 @@ class Controller:
     def killBrowser(self):
         self.log("Fechando navegador")
         try:
-            self.in_browser.close()
-            self.in_browser.service.stop()
+            self.inBrowser.close()
+            self.inBrowser.service.stop()
         except:
             self.inBrowser.quit()

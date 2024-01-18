@@ -1,10 +1,12 @@
 import requests
 import json
 
+from controller.variaveis import *
+
 
 class ControllerLogin:
     def __init__(self):
-        self.link_firebase = "https://data-report-szn-default-rtdb.firebaseio.com/"
+        self.link_firebase = LINK_FIREBASE
         self.username = ""
         self.password = ""
         self.number = ""
@@ -37,8 +39,6 @@ class ControllerLogin:
 
     def last_run(self, map: dict):
         map = json.dumps(map)
-        print(map)
         request = requests.post(
             f"{self.link_firebase}/Lasts_runs/.json", data=map, verify=False
         )
-        print(request)

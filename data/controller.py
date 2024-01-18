@@ -4,16 +4,14 @@ import colorama
 from colorama import Fore
 from colorama import Style
 
+from controller.variaveis import *
 
-# E:\Development\WorkStation
-# C:\Users\julianobs\Dev
 
 
 class DbFilter:
     def __init__(self):
         colorama.init()
-        self.path = r"C:\Users\julianobs\Dev"
-        # Path('./').resolve().parents[0]
+        self.path = LOCAL_PROJETO
 
     def data_processing(self):
         self.log("Processando dados estoque fábrica")
@@ -29,7 +27,7 @@ class DbFilter:
 
     def sap_balance(self):
         sap_stoke_balance = pd.read_csv(
-            rf"{self.path}\Report-Logistc\Arquivos\BDEstoque.CSV",
+            rf"{self.path}\Arquivos\BDEstoque.CSV",
             sep="\t",
             encoding="utf-8",
             header=2,
@@ -51,7 +49,7 @@ class DbFilter:
 
     def gpo_balance(self):
         gpo_stoke_balance = pd.read_csv(
-            f"{self.path}\Report-Logistc\Arquivos\Report.csv", sep=";", encoding="UTF-8"
+            f"{self.path}\Arquivos\Report.csv", sep=";", encoding="UTF-8"
         )
         rename = {
             "DatalgReport_COD_MERCADORIA": "Mercadoria",
@@ -75,7 +73,7 @@ class DbFilter:
 
     def sap_d_1(self):
         sap_d_1 = pd.read_csv(
-            f"{self.path}\Report-Logistc\Arquivos\BDFaturamentoD-1.csv",
+            f"{self.path}\Arquivos\BDFaturamentoD-1.csv",
             sep="\t",
             encoding="UTF-8",
             header=2,
@@ -101,7 +99,7 @@ class DbFilter:
 
     def sap_month(self):
         sap_month = pd.read_csv(
-            f"{self.path}\Report-Logistc\Arquivos\BDfaturamentoMes.csv",
+            f"{self.path}\Arquivos\BDfaturamentoMes.csv",
             sep="\t",
             encoding="UTF-8",
             header=2,
@@ -128,7 +126,7 @@ class DbFilter:
 
     def sap_product(self):
         sap_product = pd.read_csv(
-            f"{self.path}\Report-Logistc\Arquivos\BDProducaoD-1.csv",
+            f"{self.path}\Arquivos\BDProducaoD-1.csv",
             sep="\t",
             encoding="UTF-8",
             header=1,
@@ -148,8 +146,4 @@ class DbFilter:
         return PROD_L1, PROD_L2, PROD_TOTAL
 
     def log(self, msg: str):
-        # format_text  = '\033[33;40;1;4m'
-        # reset_format  = '\033[0m'
-        # print(f"{'=' * 100}\n{format_text}{msg}\n{reset_format}{'=' * 100}")
-        # print(f"{'=' * 100}\n{msg}\n{'=' * 100}")
         print(f"{'=' * 100}\n{Fore.YELLOW}{msg}{Style.RESET_ALL}\n{'=' * 100}")
